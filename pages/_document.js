@@ -41,7 +41,7 @@ export default class extends Document {
         <Head>
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta name="application-name" content="App" />
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/larsa-logo.jpg" />
           {styles}
           
        
