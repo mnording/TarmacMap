@@ -46,11 +46,12 @@ class Map extends React.Component {
     }, 2000);
   };
   change= (event) =>{
-    const { defaultCenter } = this.state;
+    const { defaultCenter,mapStyle } = this.state;
     this.map = new google.maps.Map(document.getElementById("google-map"), {
       center: defaultCenter,
       zoom: 100,
     });
+    this.map.set('styles',mapStyle);
     this.kmzLayeMattiasr.setMap(null);
     console.log("settings map to "+event.target.value)
     this.kmzLayeMattiasr = new google.maps.KmlLayer(event.target.value, {
