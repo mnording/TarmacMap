@@ -9,7 +9,10 @@ class Map extends React.Component {
       lng: 16.51307543068856,
     },
     currentMap: 'https://www.google.com/maps/d/u/0/kml?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&forcekml=1',
-   
+   mapStyle:  [{
+    elementType: "labels.icon",
+    stylers: [{ visibility: "off" }],
+  }],
   };
   kmzLayeMattiasr = null;
 
