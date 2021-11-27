@@ -50,7 +50,7 @@ export default class extends Document {
        
            <script
             src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAZDFNdRkrXdz7dktWYKurYpPKzYZgsqzQ&callback=initMap&libraries=&v=weekly`}
-            async
+            
           ></script>
         </Head>
         <body>

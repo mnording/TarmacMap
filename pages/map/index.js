@@ -18,7 +18,10 @@ class Map extends React.Component {
 
   componentDidMount() {
     document.body.classList.add("is-map");
-    this.handleAttachGoogleMap();
+    setTimeout(() => {
+      this.handleAttachGoogleMap();
+    }, 2000);
+   
   }
 
   componentWillUnmount() {  document.body.classList.remove("is-map"); }
