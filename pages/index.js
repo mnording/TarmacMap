@@ -61,7 +61,6 @@ class Map extends React.Component {
 };
   render() {
     return (<div>
-      <img style={{width:'100vw' , position:'absolute', top:'10%',  }} className="loader frame" src="larsa-logo.jpg"/>
       <StyledMap>
         <div id="google-map" />
       </StyledMap>
