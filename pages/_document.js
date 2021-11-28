@@ -45,6 +45,11 @@ export default class extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes"/>
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
           <link rel="shortcut icon" href="/larsa-logo.jpg" />
+      
+<link rel="apple-touch-startup-image" href="/larsa-logo.jpg" /> 
+
+<link rel="apple-touch-startup-image" href="/larsa-logo.jpg" media="screen and (-webkit-min-device-pixel-ratio: 2)" /> 
+
           {styles}
           
        

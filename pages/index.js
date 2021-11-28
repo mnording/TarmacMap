@@ -1,74 +1,80 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import StyledMap from "./index.css";
 
-export default function Home() {
-  
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Beläggning</title>
-        <meta name="description" content="Asfalt" />
-        <link rel="icon" href="/favicon.ico" />
-        <script
-            src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAZDFNdRkrXdz7dktWYKurYpPKzYZgsqzQ&callback=initMap&libraries=&v=weekly`}
-            async
-          ></script>
-      </Head>
+class Map extends React.Component {
+  state = {
+    defaultCenter: {
+     
+      lat:  59.37215372800212,
+      lng: 16.51307543068856,
+    },
+    currentMap: 'https://www.google.com/maps/d/u/0/kml?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&forcekml=1',
+   mapStyle:  [{
+    elementType: "labels.icon",
+    stylers: [{ visibility: "off" }],
+  }],
+  };
+  kmzLayeMattiasr = null;
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+  componentDidMount() {
+    document.body.classList.add("is-map");
+    setTimeout(() => {
+      this.handleAttachGoogleMap();
+    }, 2000);
+   
+  }
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+  componentWillUnmount() {  document.body.classList.remove("is-map"); }
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  handleAttachGoogleMap = () => {
+    const { defaultCenter,mapStyle, currentMap} = this.state;
+    //this.kmzLayeMattiasr = new google.maps.KmlLayer(this.state.currentMap);
+    this.map = new google.maps.Map(document.getElementById("google-map"), {
+      center: defaultCenter,
+      zoom: 15,
+    });
+    this.map.set('styles',mapStyle);
+    this.kmzLayeMattiasr = new google.maps.KmlLayer(currentMap, {
+      suppressInfoWindows: false,
+      preserveViewport: false,
+      map: this.map
+    });
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+  };
+  change= (event) =>{
+    const { defaultCenter,mapStyle } = this.state;
+    this.map = new google.maps.Map(document.getElementById("google-map"), {
+      center: defaultCenter,
+      zoom: 100,
+    });
+    this.map.set('styles',mapStyle);
+    this.kmzLayeMattiasr.setMap(null);
+    console.log("settings map to "+event.target.value)
+    this.kmzLayeMattiasr = new google.maps.KmlLayer(event.target.value, {
+      suppressInfoWindows: false,
+      preserveViewport: false,
+      map: this.map
+    });
+;
+    
+   
+};
+  render() {
+    return (<div>
+      <img style={{width:'100vw' , position:'absolute', top:'10%',  }} className="loader frame" src="larsa-logo.jpg"/>
+      <StyledMap>
+        <div id="google-map" />
+      </StyledMap>
+      <select  style={{display:"flex",margin:'0 auto',padding:'10px'}} onChange={this.change}>
+        <option value="https://www.google.com/maps/d/u/0/kml?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&nl=1&forcekml=1">Larsa</option>
+        <option value="https://www.google.com/maps/d/u/0/kml?mid=1g8DMXDvq0gH-SbKzv-JR5WVTX78lni7J&nl=1&forcekml=1">Annat test</option></select>
+      </div>
+    );
+  }
 }
+
+Map.propTypes = {
+  // prop: PropTypes.string.isRequired,
+};
+
+export default Map;
