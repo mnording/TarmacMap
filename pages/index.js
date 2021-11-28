@@ -1,5 +1,6 @@
 import React from "react";
 import StyledMap from "./index.css";
+import Container from "./container.css";
 
 class Map extends React.Component {
   state = {
@@ -32,6 +33,7 @@ class Map extends React.Component {
     this.map = new google.maps.Map(document.getElementById("google-map"), {
       center: defaultCenter,
       zoom: 15,
+      mapTypeId: 'satellite'
     });
     this.map.set('styles',mapStyle);
     this.kmzLayeMattiasr = new google.maps.KmlLayer(currentMap, {
@@ -46,6 +48,7 @@ class Map extends React.Component {
     this.map = new google.maps.Map(document.getElementById("google-map"), {
       center: defaultCenter,
       zoom: 100,
+      mapTypeId: 'satellite'
     });
     this.map.set('styles',mapStyle);
     this.kmzLayeMattiasr.setMap(null);
@@ -60,14 +63,14 @@ class Map extends React.Component {
    
 };
   render() {
-    return (<div>
+    return (<Container>
       <StyledMap>
         <div id="google-map" />
       </StyledMap>
-      <select  style={{display:"flex",margin:'0 auto',padding:'10px'}} onChange={this.change}>
+      <select  style={{display:"flex",margin:'10px auto',padding:'10px'}} onChange={this.change}>
         <option value="https://www.google.com/maps/d/u/0/kml?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&nl=1&forcekml=1">Larsa</option>
         <option value="https://www.google.com/maps/d/u/0/kml?mid=1g8DMXDvq0gH-SbKzv-JR5WVTX78lni7J&nl=1&forcekml=1">Annat test</option></select>
-      </div>
+      </Container>
     );
   }
 }
