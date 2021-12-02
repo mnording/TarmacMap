@@ -65,7 +65,9 @@ class Map extends React.Component {
   render() {
     return (<Container>
       <StyledMap>
-        <div id="google-map" />
+        
+<iframe src="https://www.google.com/maps/d/embed?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&ehbc=2E312F" width="640" height="480"></iframe>
+   
       </StyledMap>
       <select  style={{display:"flex",margin:'10px auto',padding:'10px'}} onChange={this.change}>
         <option value="https://www.google.com/maps/d/u/0/kml?mid=1VeRAB3VxhihKjIroI-5r0Gt922ebT57c&nl=1&forcekml=1">Larsa</option>
